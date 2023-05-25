@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:17:28 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/25 17:03:21 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/25 19:02:39 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,29 @@
 
 typedef struct main_struct
 {
-	int		nb_philo;
-	int		time_die;
-	int		time_eat;
-	int		time_sleep;
-	int		nb_meal;
-	int		dead;
-	int		finished;
-	t_philo	*philos;
+	pthread_t			*tid;
+	pthread_mutex_t		*forks;
+	int					nb_philo;
+	int					philo_id;
+	int					time_die;
+	int					time_eat;
+	int					time_sleep;
+	int					nb_meal;
+	int					dead;
+	int					finished;
+	t_philo				*philos;
 
 }	t_mainst;
 
 typedef struct s_philo
 {
 	struct main_struct	*table;
-	pthread_			t1;
+	pthread_t			t1;
 	int					id;
 	int					eat_cont;
 	int					status;
 	int					eating;
-	uint64_t			time_to_die;
+	int					time_to_die;
 	pthread_mutex_t		lock;
 	pthread_mutex_t		*r_fork;
 	pthread_mutex_t		*l_fork;

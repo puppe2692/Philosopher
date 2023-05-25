@@ -13,3 +13,8 @@ https://medium.com/swlh/the-dining-philosophers-problem-solution-in-c-90e2593f64
 https://github.com/Kuninoto/42_Philosophers
 
 https://github.com/TommyJD93/Philosophers
+
+https://osandnetworkingcslab.wordpress.com/implementation-of-dining-philosophers-using-threads/
+
+https://github.com/Alexvc23/philosophers
+
