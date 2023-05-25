@@ -1,0 +1,15 @@
+https://www.geeksforgeeks.org/dining-philosophers-problem/
+
+https://www.codequoi.com/en/why-i-no-longer-write-articles-about-42-school-projects/
+
+https://www.youtube.com/watch?v=Dt51GebwNR0
+
+https://www.youtube.com/watch?v=FYUi-u7UWgw
+
+https://medium.com/swlh/the-dining-philosophers-problem-bbdb92e6b788
+
+https://medium.com/swlh/the-dining-philosophers-problem-solution-in-c-90e2593f64e8
+
+https://github.com/Kuninoto/42_Philosophers
+
+https://github.com/TommyJD93/Philosophers
