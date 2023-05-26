@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:24:29 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/26 12:23:11 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/26 17:34:15 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,41 @@
 void	ft_init_philo(t_mainst *table, int i)
 {
 	table->philos[i].table = table;
+	table->philos[i].t1 = table->tid[i];
 	table->philos[i].id = i;
 	table->philos[i].dead = 0;
 	table->philos[i].eating = 0;
 	table->philos[i].sleeping = 0;
 	table->philos[i].time_to_die = table->time_die;
+	pthread_mutex_init(&table->philos[i].lock, NULL);
 	table->philos[i].r_fork = &table->forks[i];
 	table->philos[i].l_fork = &table->forks[(i + 1) % table->nb_philo];
 }
 
-
-void	*thread_routine(t_mainst *table)
+void	ft_eat(t_philo *philo)
 {
-	// fcontion init philo ou la faire avant la creation des mutexs et l'init dedans
-	printf("\nPhilosopher %d is thinking ", n);
-	pthread_mutex_lock(&forks[n]);//when philosopher 5 is eating he takes fork 1 and fork 5
-	pthread_mutex_lock(&forks[(n+1)%5]);
-	printf("\nPhilosopher %d is eating ",n);
-	sleep(3);
-	pthread_mutex_unlock(&forks[n]);
-	pthread_mutex_unlock(&forks[(n+1)%5]);
-	printf("\nPhilosopher %d is sleeping ",n);
-	sleep(3);
+	pthread_mutex_lock(&philo->r_fork);
+	pthread_mutex_lock(&philo->l_fork);
+	philo->last_eat_time = ft_get_time();
+	printf("\nPhilosopher %d is eating", philo->id);
+	ft_usleep_checkdeath(philo, philo->table->time_eat);
+	pthread_mutex_unlock(&philo->r_fork);
+	pthread_mutex_unlock(&philo->l_fork);
+}
 
-	// faire une fonction eat prend oruchette
-	// faire une fonction eat plus pose oruchette
-	// faire une fonction sleep
+void	ft_sleep(t_philo *philo)
+{
+	printf("\nPhilosopher %d is sleeping ", philo->id);
+	ft_usleep_checkdeath(philo, philo->table->time_sleep);
+}
+
+void	*thread_routine(t_philo *philo)
+{
+	while (//check la mort
+	printf("\nPhilosopher %d is thinking ", philo->id);
+	pthread_mutex_lock(&forks[n]);//when philosopher 5 is eating he takes fork 1 and fork 5
+	ft_eat(philo);
+	ft_sleep(philo);
 }
 
 int	ft_init_diner(t_mainst *table)
@@ -61,7 +70,7 @@ int	ft_init_diner(t_mainst *table)
 	while (++i < table->nb_philo)
 	{
 		ft_init_philo(table, i);
-		k = pthread_create(&table->tid[i], NULL, thread_routine, table);
+		k = pthread_create(&table->tid[i], NULL, thread_routine, &table->philos[i]);
 	}
 	if (k == -1 || j == -1)
 		return (0);
