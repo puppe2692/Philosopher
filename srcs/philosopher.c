@@ -6,11 +6,24 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:24:29 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/25 20:12:22 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/26 12:23:11 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_includes.h"
+
+void	ft_init_philo(t_mainst *table, int i)
+{
+	table->philos[i].table = table;
+	table->philos[i].id = i;
+	table->philos[i].dead = 0;
+	table->philos[i].eating = 0;
+	table->philos[i].sleeping = 0;
+	table->philos[i].time_to_die = table->time_die;
+	table->philos[i].r_fork = &table->forks[i];
+	table->philos[i].l_fork = &table->forks[(i + 1) % table->nb_philo];
+}
+
 
 void	*thread_routine(t_mainst *table)
 {
@@ -20,8 +33,8 @@ void	*thread_routine(t_mainst *table)
 	pthread_mutex_lock(&forks[(n+1)%5]);
 	printf("\nPhilosopher %d is eating ",n);
 	sleep(3);
-	pthread_mutex_unlock(&chopstick[n]);
-	pthread_mutex_unlock(&chopstick[(n+1)%5]);
+	pthread_mutex_unlock(&forks[n]);
+	pthread_mutex_unlock(&forks[(n+1)%5]);
 	printf("\nPhilosopher %d is sleeping ",n);
 	sleep(3);
 
@@ -32,10 +45,11 @@ void	*thread_routine(t_mainst *table)
 
 int	ft_init_diner(t_mainst *table)
 {
-	int	i;
-	int	k;
-	int	j;
+	int		i;
+	int		k;
+	int		j;
 
+	table->philos = malloc(table->nb_philo * sizeof(t_philo));
 	table->tid = malloc(table->nb_philo * sizeof(pthread_t));
 	table->forks = malloc(table->nb_philo * sizeof(pthread_t));
 	if (!table->tid || !table->forks)
@@ -45,7 +59,10 @@ int	ft_init_diner(t_mainst *table)
 		j = pthread_mutex_init(&table->forks[i], NULL);
 	i = -1;
 	while (++i < table->nb_philo)
+	{
+		ft_init_philo(table, i);
 		k = pthread_create(&table->tid[i], NULL, thread_routine, table);
+	}
 	if (k == -1 || j == -1)
 		return (0);
 }

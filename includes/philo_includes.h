@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:17:28 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/25 19:02:39 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/26 11:48:17 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct main_struct
 	pthread_t			*tid;
 	pthread_mutex_t		*forks;
 	int					nb_philo;
-	int					philo_id;
 	int					time_die;
 	int					time_eat;
 	int					time_sleep;
