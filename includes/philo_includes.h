@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:17:28 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/27 16:11:12 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/27 18:39:46 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct main_struct
 	int					nb_meal;
 	int					dead;
 	int					finished;
+	pthread_mutex_t		printf;
 	t_philo				*philos;
 
 }	t_mainst;
@@ -55,6 +56,8 @@ typedef struct main_struct
 // Main
 int		ft_philosopher(int argc, char **argv);
 void	ft_init_philo(t_mainst *table, int i);
+int		ft_init_mutex(t_mainst *table);
+int		ft_init_thread(t_mainst *table);
 
 //Parsing
 int		ft_philo_parsing(int argc, char **argv, t_mainst *table);
@@ -64,6 +67,7 @@ int		ft_parsnumvalue(char *arg);
 //action
 void	ft_eat(t_philo *philo);
 void	ft_sleep(t_philo *philo);
+void	*thread_routine(void *philos);
 
 //utils
 int		ft_get_time(void);

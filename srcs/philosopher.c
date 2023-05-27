@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:24:29 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/27 17:47:51 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/27 18:39:19 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_eat(t_philo *philo)
 	pthread_mutex_lock(philo->r_fork);
 	pthread_mutex_lock(philo->l_fork);
 	philo->last_eat_time = ft_get_time();
+	pthread_mutex_lock(&philo->table->printf);
 	printf("\nPhilosopher %d is eating", philo->id);
 	philo->eating = 1;
 	ft_usleep_check_death(philo, philo->table->time_eat);
@@ -65,23 +66,15 @@ int	ft_init_diner(t_mainst *table)
 {
 	int		i;
 	int		k;
-	int		j;
 
 	table->philos = malloc(table->nb_philo * sizeof(t_philo));
 	table->tid = malloc(table->nb_philo * sizeof(pthread_t));
 	table->forks = malloc(table->nb_philo * sizeof(pthread_mutex_t));
 	if (!table->tid || !table->forks)
 		return (0);
-	i = -1;
-	while (++i < table->nb_philo)
-		j = pthread_mutex_init(&table->forks[i], NULL);
-	i = -1;
-	while (++i < table->nb_philo)
-	{
-		ft_init_philo(table, i);
-		k = pthread_create(&table->tid[i], NULL, thread_routine, &table->philos[i]);
-	}
-	if (k == -1 || j == -1)
+	if (!ft_init_mutex(table))
+		return (0);
+	if (!ft_init_thread(table))
 		return (0);
 	i = -1;
 	while (++i < table->nb_philo)
