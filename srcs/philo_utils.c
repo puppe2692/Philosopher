@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:29:04 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/26 17:30:06 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/27 16:57:54 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_get_time(void)
 	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL) != 0)
-		return (error("gettimeofday() FAILURE\n", NULL));
+		return (printf("gettimeofday() ECHEC\n", NULL));
 	return ((tv.tv_sec * (int)1000) + (tv.tv_usec / 1000));
 }
 

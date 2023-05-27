@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:36:26 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/26 16:58:16 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/27 17:15:31 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ int	ft_philo_parsing(int argc, char **argv, t_mainst *table)
 			return (0);
 		i++;
 	}
-	table = (t_mainst *)malloc(sizeof(t_mainst));
-	if (!table)
-		return (0);
 	if (!ft_init_args(argc, argv, table))
 	{
 		free(table);

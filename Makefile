@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/05/25 15:37:07 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/05/27 16:10:24 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME		= philosopher
 SRCS_FILES	= main.c \
 				philosopher.c \
 				philo_parsing.c \
+				philo_utils.c \
 
 HEADER_FILE	= philo_includes.h
 
