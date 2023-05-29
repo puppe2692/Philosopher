@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 12:36:19 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/22 16:14:11 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:48:53 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,3 +84,16 @@ int	main(void)
 		printf("%sMain: OK. Total count is %u%s\n", GREEN, count, NC);
 	return (0);
 }
+
+
+	if (table->dead == 1)
+	{
+		i = -1;
+		while (++i < table->nb_philo)
+		{
+			if (table->philos[i].dead == 1)
+				printf("\n%i Philosopher %d is Dead ",
+					ft_get_time() - table->time_start, table->philos[i].id);
+		}
+	}
+	return (1);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_init.c                                       :+:      :+:    :+:   */
+/*   philo_init_quit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:30:49 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/27 18:38:33 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/29 18:50:16 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int	ft_init_mutex(t_mainst *table)
 	j = pthread_mutex_init(&table->printf, NULL);
 	if (j == -1)
 		return (0);
+	j = pthread_mutex_init(&table->death, NULL);
+	if (j == -1)
+		return (0);
+	return (1);
 }
 
 int	ft_init_thread(t_mainst *table)
@@ -44,4 +48,27 @@ int	ft_init_thread(t_mainst *table)
 		if (j == -1)
 			return (0);
 	}
+	return (1);
+}
+
+void	ft_free_table(t_mainst *table)
+{
+	if (table->tid)
+		free(table->tid);
+	if (table->forks)
+		free(table->forks);
+	if (table->philos)
+		free(table->philos);
+}
+
+void	ft_exit(t_mainst *table)
+{
+	int	i;
+
+	i = -1;
+	while (++i < table->nb_philo)
+		pthread_mutex_destroy(&table->forks[i]);
+	pthread_mutex_destroy(&table->printf);
+	pthread_mutex_destroy(&table->death);
+	ft_free_table(table);
 }

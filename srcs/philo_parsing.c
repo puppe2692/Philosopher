@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:36:26 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/27 17:15:31 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/29 16:59:38 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	ft_init_args(int argc, char **argv, t_mainst *table)
 	}
 	if (argc == 6)
 		table->nb_meal = ft_atoi(argv[5]);
+	else
+		table->nb_meal = 0;
 	if (argc == 6 && table->nb_meal < 1)
 	{
 		ft_printf_fd(2, "Who wants to eat around a table with no food?");
