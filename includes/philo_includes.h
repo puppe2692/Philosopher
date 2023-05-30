@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:17:28 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/29 18:53:22 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/30 11:17:37 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct main_struct
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		printf;
 	pthread_mutex_t		death;
+	pthread_mutex_t		fin;
 	int					nb_philo;
 	int					time_die;
 	int					time_eat;

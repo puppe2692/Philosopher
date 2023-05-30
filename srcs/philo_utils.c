@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:29:04 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/29 19:04:33 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/30 12:08:08 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,28 @@ int	ft_usleep_check_death(t_philo *philo, int time)
 
 int	ft_watch_death(t_philo *philo)
 {
-	if (philo->table->dead != 0)
+	int	check;
+	int	check2;
+
+	pthread_mutex_lock(&philo->table->death);
+	check = philo->table->dead;
+	pthread_mutex_unlock(&philo->table->death);
+	pthread_mutex_lock(&philo->table->fin);
+	check2 = philo->table->finished;
+	pthread_mutex_unlock(&philo->table->fin);
+
+	if (check != 0)
 	{
-		printf("\n%i Philosopher %d is Dead ",
-			ft_get_time() - philo->table->time_start, philo->table->dead);
+		if (check2 == 0)
+		{
+			pthread_mutex_lock(&philo->table->fin);
+			philo->table->finished = 1;
+			pthread_mutex_unlock(&philo->table->fin);
+			pthread_mutex_lock(&philo->table->printf);
+			printf("\n%i %d died",
+				ft_get_time() - philo->table->time_start, check);
+			pthread_mutex_unlock(&philo->table->printf);
+		}
 		return (1);
 	}
 	return (0);

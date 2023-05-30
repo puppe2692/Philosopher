@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:30:49 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/29 18:50:16 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/30 11:17:58 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ int	ft_init_mutex(t_mainst *table)
 	if (j == -1)
 		return (0);
 	j = pthread_mutex_init(&table->death, NULL);
+	if (j == -1)
+		return (0);
+	j = pthread_mutex_init(&table->fin, NULL);
 	if (j == -1)
 		return (0);
 	return (1);
