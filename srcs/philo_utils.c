@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:29:04 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/30 12:08:08 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/30 15:22:24 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	ft_watch_death(t_philo *philo)
 	pthread_mutex_lock(&philo->table->fin);
 	check2 = philo->table->finished;
 	pthread_mutex_unlock(&philo->table->fin);
-
 	if (check != 0)
 	{
 		if (check2 == 0)
