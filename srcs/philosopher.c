@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:24:29 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/31 17:04:12 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/31 17:59:05 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_init_philo(t_mainst *table, int i)
 	table->philos[i].t1 = table->tid[i];
 	table->philos[i].id = i + 1;
 	table->philos[i].eat_count = 0;
+	table->philos[i].last_eat_time = 0;
 	table->philos[i].fat = 0;
 	table->philos[i].eating = 0;
 	table->philos[i].sleeping = 0;
@@ -52,12 +53,8 @@ void	*thread_routine(void *philos)
 		}
 		if (!ft_sleep(philo))
 			return (NULL);
-		if (ft_watch_death(philo) == 1)
+		if (!ft_think(philo))
 			return (NULL);
-		pthread_mutex_lock(&philo->table->printf);
-		printf("\n%i %d is thinking",
-			ft_get_time() - philo->table->time_start, philo->id);
-		pthread_mutex_unlock(&philo->table->printf);
 	}
 	return (NULL);
 }

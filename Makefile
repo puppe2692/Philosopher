@@ -6,11 +6,11 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/05/31 15:45:13 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/05/31 17:48:24 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= philosopher
+NAME		= philo
 
 SRCS_FILES	= main.c \
 				philosopher.c \

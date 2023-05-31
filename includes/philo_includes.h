@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:17:28 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/31 15:55:15 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/31 17:59:01 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int			ft_forks(t_philo *philo,
 int			ft_take_forks(t_philo *philo);
 int			ft_eat(t_philo *philo);
 int			ft_sleep(t_philo *philo);
+int			ft_think(t_philo *philo);
 void		*thread_routine(void *philos);
 
 //utils & quit
