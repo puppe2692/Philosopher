@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:29:04 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/31 15:20:18 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/31 15:54:55 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	ft_get_time(void)
 		return (printf("gettimeofday() ECHEC\n", NULL));
 	return ((tv.tv_sec * (int)1000) + (tv.tv_usec / (int)1000));
 }
-
 
 void	ft_print_death(t_philo *philo)
 {
@@ -42,7 +41,6 @@ void	ft_print_death(t_philo *philo)
 		pthread_mutex_unlock(&philo->table->printf);
 		pthread_mutex_unlock(&philo->table->death);
 	}
-
 }
 
 int	ft_usleep_check_death(t_philo *philo, int time)

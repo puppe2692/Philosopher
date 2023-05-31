@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:17:28 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/31 15:49:08 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/31 15:55:15 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct main_struct
 	t_philo				*philos;
 
 }	t_mainst;
-
 
 // Main
 int			ft_philosopher(int argc, char **argv);

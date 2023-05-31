@@ -6,12 +6,11 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:30:49 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/31 13:49:19 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/31 15:54:42 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_includes.h"
-
 
 int	ft_init_mutex(t_mainst *table)
 {

@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:24:29 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/31 15:44:05 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/31 15:55:05 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	ft_init_diner(t_mainst *table)
 	ft_exit(table);
 	return (1);
 }
-
 
 int	ft_philosopher(int argc, char **argv)
 {
