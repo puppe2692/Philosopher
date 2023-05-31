@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:24:29 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/31 11:53:20 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/31 15:03:16 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_init_philo(t_mainst *table, int i)
 	table->philos[i].table = table;
 	table->philos[i].t1 = table->tid[i];
 	table->philos[i].id = i + 1;
-	table->philos[i].dead = 0;
 	table->philos[i].eat_count = 0;
+	table->philos[i].fat = 0;
 	table->philos[i].eating = 0;
 	table->philos[i].sleeping = 0;
 	table->philos[i].time_to_die = table->time_die;
@@ -76,7 +76,7 @@ int	ft_eat(t_philo *philo)
 	if (!ft_take_forks(philo))
 		return (0);
 	pthread_mutex_lock(&philo->table->printf);
-	philo->eat_count++; // ici
+	philo->eat_count++;
 	philo->last_eat_time = ft_get_time();
 	printf("\n%i %d is eating",
 		ft_get_time() - philo->table->time_start, philo->id);
@@ -125,7 +125,7 @@ void	*thread_routine(void *philos)
 {
 	t_philo	*philo;
 
-	philo = (t_philo *)philos; // pourquoi?
+	philo = (t_philo *)philos;
 	while (ft_isdead(philo))
 	{
 		if (!ft_eat(philo))
