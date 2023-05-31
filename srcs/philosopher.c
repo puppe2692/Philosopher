@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:24:29 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/30 15:23:24 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/31 11:53:20 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	ft_eat(t_philo *philo)
 	if (!ft_take_forks(philo))
 		return (0);
 	pthread_mutex_lock(&philo->table->printf);
+	philo->eat_count++; // ici
 	philo->last_eat_time = ft_get_time();
 	printf("\n%i %d is eating",
 		ft_get_time() - philo->table->time_start, philo->id);
@@ -170,6 +171,7 @@ int	ft_philosopher(int argc, char **argv)
 		return (1);
 	table.time_start = ft_get_time();
 	table.finished = 0;
+	table.full = 0;
 	if (!ft_init_diner(&table))
 		return (1);
 	return (0);

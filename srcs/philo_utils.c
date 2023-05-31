@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:29:04 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/30 15:22:24 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/31 14:33:18 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ int	ft_usleep_check_death(t_philo *philo, int time)
 			philo->table->dead = philo->id;
 			pthread_mutex_unlock(&philo->table->death);
 		}
+		if (philo->eat_count >= philo->table->nb_meal
+			&& philo->table->nb_meal > 0 && philo->fat == 0)
+		{
+			philo->fat = 1;
+			pthread_mutex_lock(&philo->table->repas);
+			philo->table->full++;
+			pthread_mutex_unlock(&philo->table->repas);
+		}
 	}
 	return (0);
 }
@@ -44,6 +52,7 @@ int	ft_watch_death(t_philo *philo)
 {
 	int	check;
 	int	check2;
+	int	check3;
 
 	pthread_mutex_lock(&philo->table->death);
 	check = philo->table->dead;
@@ -51,6 +60,9 @@ int	ft_watch_death(t_philo *philo)
 	pthread_mutex_lock(&philo->table->fin);
 	check2 = philo->table->finished;
 	pthread_mutex_unlock(&philo->table->fin);
+	pthread_mutex_lock(&philo->table->repas);
+	check3 = philo->table->full;
+	pthread_mutex_unlock(&philo->table->repas);
 	if (check != 0)
 	{
 		if (check2 == 0)
@@ -65,5 +77,7 @@ int	ft_watch_death(t_philo *philo)
 		}
 		return (1);
 	}
+	if (check3 == philo->table->nb_philo)
+		return (1);
 	return (0);
 }
