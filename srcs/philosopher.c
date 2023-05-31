@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:24:29 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/31 15:55:05 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/31 16:35:39 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,11 @@ void	*thread_routine(void *philos)
 	philo = (t_philo *)philos;
 	while (ft_isdead(philo))
 	{
-		if (!ft_eat(philo))
-			return (NULL);
+		if (philo->table->nb_philo != 1)
+		{
+			if (!ft_eat(philo))
+				return (NULL);
+		}
 		if (!ft_sleep(philo))
 			return (NULL);
 		if (ft_watch_death(philo) == 1)
