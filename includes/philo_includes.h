@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:17:28 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/31 17:59:01 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/01 12:20:03 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ typedef struct s_philo
 	int					dead;
 	int					eat_count;
 	int					fat;
-	int					eating;
-	int					sleeping;
 	int					last_eat_time;
 	int					time_to_die;
 	pthread_mutex_t		*r_fork;

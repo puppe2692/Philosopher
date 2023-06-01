@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:24:29 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/31 17:59:05 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/01 12:20:19 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	ft_init_philo(t_mainst *table, int i)
 	table->philos[i].eat_count = 0;
 	table->philos[i].last_eat_time = 0;
 	table->philos[i].fat = 0;
-	table->philos[i].eating = 0;
-	table->philos[i].sleeping = 0;
 	table->philos[i].time_to_die = table->time_die;
 	table->philos[i].r_fork = &table->forks[i];
 	table->philos[i].l_fork = &table->forks[(i + 1) % table->nb_philo];

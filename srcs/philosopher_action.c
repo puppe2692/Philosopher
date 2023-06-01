@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 15:43:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/31 18:36:04 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/01 12:19:51 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,7 @@ int	ft_sleep(t_philo *philo)
 	printf("\n%i %d is sleeping",
 		ft_get_time() - philo->table->time_start, philo->id);
 	pthread_mutex_unlock(&philo->table->printf);
-	philo->sleeping = 1;
 	ft_usleep_check_death(philo, philo->table->time_sleep);
-	philo->sleeping = 0;
 	return (1);
 }
 
@@ -101,9 +99,9 @@ int	ft_think(t_philo *philo)
 			&& die >= (2 * philo->table->time_eat))
 		|| (nb_philo % 2 == 1 && die >= cycle
 			&& die >= (3 * philo->table->time_eat)))
-		time = 0;
+		time = 5 * (nb_philo % 2);
 	else
-		time = die - cycle;
+		time = philo->table->time_eat * (2 + nb_philo % 2) - cycle;
 	if (ft_watch_death(philo) == 1)
 		return (0);
 	pthread_mutex_lock(&philo->table->printf);
