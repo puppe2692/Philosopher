@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:36:26 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/01 11:43:28 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/01 12:37:54 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_parsnumvalue(char *arg)
 	{
 		if (!ft_isdigit(arg[i]))
 		{
-			ft_printf_fd(2, "Arguments must be numeric value");
+			printf("Arguments must be numeric value");
 			return (0);
 		}
 		i++;
@@ -34,7 +34,7 @@ int	ft_init_args(int argc, char **argv, t_mainst *table)
 	table->nb_philo = ft_atoi(argv[1]);
 	if (table->nb_philo < 1 || table->nb_philo > 200)
 	{
-		ft_printf_fd(2,
+		printf(
 			"Philosophers can't philosoph with this amount of philosophers\n");
 		return (0);
 	}
@@ -43,7 +43,7 @@ int	ft_init_args(int argc, char **argv, t_mainst *table)
 	table->time_sleep = ft_atoi(argv[4]);
 	if (table->time_die < 1 || table->time_eat < 1 || table->time_sleep < 1)
 	{
-		ft_printf_fd(2, "Time is not an imaginary concept\n");
+		printf("Time is not an imaginary concept\n");
 		return (0);
 	}
 	if (argc == 6)
@@ -52,7 +52,7 @@ int	ft_init_args(int argc, char **argv, t_mainst *table)
 		table->nb_meal = 0;
 	if (argc == 6 && table->nb_meal < 1)
 	{
-		ft_printf_fd(2, "Who wants to eat around a table with no food?\n");
+		printf("Who wants to eat around a table with no food?\n");
 		return (0);
 	}
 	return (1);

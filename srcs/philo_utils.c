@@ -6,19 +6,20 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:29:04 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/31 17:03:07 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/13 14:36:25 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_includes.h"
 
-int	ft_get_time(void)
+unsigned long	ft_get_time(void)
 {
 	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL) != 0)
 		return (printf("gettimeofday() ECHEC\n", NULL));
-	return ((tv.tv_sec * (int)1000) + (tv.tv_usec / (int)1000));
+	return ((tv.tv_sec * (unsigned long)1000)
+		+ (tv.tv_usec / (unsigned long)1000));
 }
 
 void	ft_print_death(t_philo *philo)
@@ -36,23 +37,25 @@ void	ft_print_death(t_philo *philo)
 		pthread_mutex_lock(&philo->table->death);
 		philo->table->dead = philo->id;
 		pthread_mutex_lock(&philo->table->printf);
-		printf("\n%i %d died",
+		printf("\n%lu %d died",
 			ft_get_time() - philo->table->time_start, philo->id);
 		pthread_mutex_unlock(&philo->table->printf);
 		pthread_mutex_unlock(&philo->table->death);
 	}
 }
 
-int	ft_usleep_check_death(t_philo *philo, int time)
+int	ft_usleep_check_death(t_philo *philo, unsigned long time)
 {
-	int	start;
+	unsigned long	start;
 
 	start = ft_get_time();
 	while ((ft_get_time() - start) < time)
 	{
 		usleep(1000);
 		if (ft_get_time() - philo->last_eat_time > philo->time_to_die)
+		{
 			ft_print_death(philo);
+		}
 		if (philo->eat_count >= philo->table->nb_meal
 			&& philo->table->nb_meal > 0 && philo->fat == 0)
 		{
